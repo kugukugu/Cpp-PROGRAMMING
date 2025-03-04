@@ -3,7 +3,7 @@
 using namespace std;
 
 //swap 함수 오버로딩으로 구현
-char swap(char *a, char*b)
+void swap(char* a, char* b)
 {
     char temp;
     temp = *a;
@@ -12,7 +12,7 @@ char swap(char *a, char*b)
 
 }
 
-int swap(int *a, int *b)
+void swap(int* a, int* b)
 {
     int temp;
     temp = *a;
@@ -20,7 +20,7 @@ int swap(int *a, int *b)
     *b = temp;
 }
 
-double swap(double *p, double *q)
+void swap(double* p, double* q)
 {
     double temp;
     temp = *p;

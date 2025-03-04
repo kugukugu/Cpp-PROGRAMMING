@@ -9,12 +9,12 @@
 
 using namespace std;
 
-Point& addPoint(const Point& p1, const Point& p2);
-
 typedef struct _Point {
     int x;
     int y;
 }Point;
+
+Point& addPoint(const Point& p1, const Point& p2, Point& p3);
 
 
 int main() {
@@ -26,7 +26,7 @@ int main() {
     a[0] = { 20, 30 };
     a[1] = { 30, 40 };
 
-   a[3] =  addPoint(a[0],a[1]);
+   a[3] =  addPoint(a[0],a[1],a[2]);
 
    cout << a[3].x << endl;
    cout << a[3].y << endl;
@@ -36,11 +36,10 @@ int main() {
     return 0;
 }
 
-Point& addPoint(const Point& p1, const Point& p2) {
-    Point& temp;
+Point& addPoint(const Point& p1, const Point& p2,  Point& p3) {
+   
+    p3.x = p1.x + p2.x;
+  p3.y = p1.y + p2.y;
 
-    temp.x = p1.x + p2.x;
-    p1.y + p2.y;
-
-    
+  return p3;
 }

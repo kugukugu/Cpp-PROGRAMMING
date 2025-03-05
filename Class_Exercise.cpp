@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -68,18 +69,30 @@ public:
           cout << '\n';
       }
 
-     /* void find_name(Person* p[]) {
+      void find_name() {
           char name[10];
+          bool count = false ;
           cout << "이름을 입력하시오. ";
           cin >> name;
 
-          for (int i = 0; p[i] != NULL; i++) {
-              if (!= strcmp(&p[i]->name, &name)) {
-                  return p[i];
+          for (int i = 0; p[i] != nullptr; i++) {
+              if (strcmp(p[i]->name, name) == 0) {
+                  count = true;
+                  cout << p[i]->name << ' ' << p[i]->age <<' ';
+                  for (int j = 0; j < 3; j++) {
+                      if(p[i]->hobby[j] != nullptr) {
+                        cout << p[i]->hobby[j] << ' ';
+                      }
+                  }
+                  cout << '\n'<<endl; 
+                  break;
               }
           }
-
-          cout << "찾는 사람이 없습니다" << endl;*/
+          if (count == false) {
+              cout << "찾는 사람이 없습니다" << endl;
+              cout << endl;
+          }
+      }
       void add_hobby() {
           char name[10];
           int j = 0 , i=0;
@@ -124,23 +137,22 @@ public:
        while (1) {
            menu = p1.menu();
 
-           if (menu == 1) {
-                p1.join_user();
-           
-           }
-           else if (menu == 2) {
-                p1.search_user();
-           }
-           else if (menu == 3) {
-                p1.total_user();
-            }
-           /* else if (menu == 4) {
-                find_name();
-            }*/
-           else {
-               p1.add_hobby();
-           }
-
+        if (menu == 1) {
+            p1.join_user();
         }
+        else if (menu == 2) {
+            p1.search_user();
+        }
+        else if (menu == 3) {
+            p1.total_user();
+        }
+        else if (menu == 4) {
+            p1.find_name();
+        }
+        else {
+            p1.add_hobby();
+        }
+
+      }
 
   }

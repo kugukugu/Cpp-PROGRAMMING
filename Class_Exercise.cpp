@@ -7,6 +7,12 @@ public:
     char name[10];
     int age;
     char *hobby[3];
+
+    Person () {
+        for(int i=0; i<3; i++) {
+            hobby[i] = nullptr;
+        }
+    }
 }
 
 class PersonManager {

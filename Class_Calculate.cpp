@@ -88,15 +88,21 @@ public:
                 cout << "이름을 입력하시오. " << endl;
                 cout << "이름: ";
                 cin >> name;
+                getchar();
 
                 for ( i = 0; p[i] != nullptr; i++) {
                     if (strcmp(p[i]->name, name)==0) {
                         j=0;
-                        break;
+                         break;
                     }
                     else {
                         j++;
                     }
+
+                    if (j > 0) {
+                        cout << "잘못된 입력" << j<<endl;
+                    }
+                    cout << endl;
                 }
           } while (j>0);
 

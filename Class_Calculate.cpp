@@ -56,7 +56,8 @@ public:
               cout << p[i]->name << endl;
               cout << p[i]->age << endl;
               for (int j = 0; j < 3; j++) {
-                  cout << p[i]->hobby[j];
+                  if(p[i]->hobby[j] != nullptr)
+                    cout << p[i]->hobby[j];
               }
               cout << '\n';
           }

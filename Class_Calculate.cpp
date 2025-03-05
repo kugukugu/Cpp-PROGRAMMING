@@ -17,9 +17,10 @@ public:
 
 class PersonManager {
 private:
-    int menuOption;
-    Person p1;
+    int menuOption, i=0;
+    Person* p[100] = { nullptr };
 public:
+    
     int menu() {
         do
         {
@@ -33,38 +34,37 @@ public:
             if (menuOption < 1 || menuOption >5) {
                 cout << "잘못된 입력" << endl;
             }
+            cout << endl;
         } while (menuOption < 1 || menuOption >5);
 
         return menuOption;
     }
 
-    Person* join_user() {
+    void join_user() {
+        p[i] = new Person;
         cout << "이름과 나이를 입력하시오. " << endl;
         cout << "이름: ";
-        cin >> p1.name;
+        cin >> p[i]->name;
         cout  << "나이: ";
-        cin >> p1.age;
+        cin >> p[i]->age;
         cout << "\n";
-
-        return &p1;
+        i++;
     }
 
-      void search_user(Person* p[]) {
+      void search_user() {
           for (int i = 0; p[i] != nullptr; i++) {
               cout << p[i]->name << endl;
               cout << p[i]->age << endl;
-              cout << "\n";
+              cout << '\n';
           }
       }
 
-     /* void total_user(Person* p[]) {
-          for (int i = 0; p[i] != NULL; i++) {
-
-          }
-          cout << "회원 명수: " << i - 1 << endl;
+      void total_user() {
+          cout << "회원 명수: " << i << endl;
+          cout << '\n';
       }
 
-      void find_name(Person* p[]) {
+     /* void find_name(Person* p[]) {
           char name[10];
           cout << "이름을 입력하시오. ";
           cin >> name;
@@ -79,24 +79,24 @@ public:
 };
 
  int main() {
-     Person* p[100] = { nullptr };
+    
      PersonManager p1;
      int menu, i = 0;
 
-       while (i + 1) {
+       while (1) {
            menu = p1.menu();
 
            if (menu == 1) {
-                p[i] = p1.join_user();
-                i++;
+                p1.join_user();
+           
            }
            else if (menu == 2) {
-                p1.search_user(p);
+                p1.search_user();
            }
-            /*else if (menu == 3) {
-                total_user(p1);
+           else if (menu == 3) {
+                p1.total_user();
             }
-            else if (menu == 4) {
+           /* else if (menu == 4) {
                 find_name();
             }*/
 

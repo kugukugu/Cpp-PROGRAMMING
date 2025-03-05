@@ -57,9 +57,9 @@ public:
               cout << p[i]->age << endl;
               for (int j = 0; j < 3; j++) {
                   if(p[i]->hobby[j] != nullptr)
-                    cout << p[i]->hobby[j];
+                    cout << p[i]->hobby[j] << ' ';
               }
-              cout << '\n';
+              cout << '\n' << endl;
           }
       }
 
@@ -109,8 +109,10 @@ public:
           cout << "취미 3개를 입력하시오. " << endl;
           for (int k = 0; k < 3; k++) {
               cout << k + 1 << "번 째 취미: ";
+              p[i]->hobby[k] = new char[50];
               cin >> p[i]->hobby[k];
           }
+          cout << endl;
       }
 };
 

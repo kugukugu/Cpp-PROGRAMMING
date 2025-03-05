@@ -32,6 +32,7 @@ public:
             cout << "4. 이름 찾기" << endl;
             cout << "5. 기존 회원 관심사 추가" << endl;
             cin >> MenuOption;
+            cout << endl;
             if (MenuOption < 1 || MenuOption >5) {
                 cout << "잘못된 입력" << endl;
             }

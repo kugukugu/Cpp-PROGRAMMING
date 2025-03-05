@@ -17,7 +17,7 @@ public:
 
 class PersonManager {
 private:
-    int menuOption, i=0;
+    int MenuOption, i=0;
     Person* p[100] = { nullptr };
 public:
     
@@ -30,14 +30,14 @@ public:
             cout << "3. 전체 회원 수" << endl;
             cout << "4. 이름 찾기" << endl;
             cout << "5. 기존 회원 관심사 추가" << endl;
-            cin >> menuOption;
-            if (menuOption < 1 || menuOption >5) {
+            cin >> MenuOption;
+            if (MenuOption < 1 || MenuOption >5) {
                 cout << "잘못된 입력" << endl;
             }
             cout << endl;
-        } while (menuOption < 1 || menuOption >5);
+        } while (MenuOption < 1 || MenuOption >5);
 
-        return menuOption;
+        return MenuOption;
     }
 
     void join_user() {
@@ -55,6 +55,9 @@ public:
           for (int i = 0; p[i] != nullptr; i++) {
               cout << p[i]->name << endl;
               cout << p[i]->age << endl;
+              for (int j = 0; j < 3; j++) {
+                  cout << p[i]->hobby[j];
+              }
               cout << '\n';
           }
       }
@@ -76,6 +79,32 @@ public:
           }
 
           cout << "찾는 사람이 없습니다" << endl;*/
+      void add_hobby() {
+          char name[10];
+          int j = 0 , i=0;
+          
+          do {
+                cout << "이름을 입력하시오. " << endl;
+                cout << "이름: ";
+                cin >> name;
+
+                for ( i = 0; p[i] != nullptr; i++) {
+                    if (strcmp(p[i]->name, name)==0) {
+                        j=0;
+                        break;
+                    }
+                    else {
+                        j++;
+                    }
+                }
+          } while (j>0);
+
+          cout << "취미 3개를 입력하시오. " << endl;
+          for (int k = 0; k < 3; k++) {
+              cout << k + 1 << "번 째 취미: ";
+              cin >> p[i]->hobby[k];
+          }
+      }
 };
 
  int main() {
@@ -99,6 +128,9 @@ public:
            /* else if (menu == 4) {
                 find_name();
             }*/
+           else {
+               p1.add_hobby();
+           }
 
         }
 

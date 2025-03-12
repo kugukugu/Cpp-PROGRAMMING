@@ -18,10 +18,17 @@ public:
 
 class PersonManager {
 private:
-    int MenuOption, i=0;
-    Person* p[100] = { nullptr };
+    int MenuOption, index ;
+    Person* p[100] ;
 public:
-    
+
+    PersonManager() {
+        index = 0;
+        for (int i = 0; i < 3; i++) {
+            p[i] = nullptr;
+        }
+    }
+
     int menu() {
         do
         {
@@ -43,100 +50,83 @@ public:
     }
 
     void join_user() {
-        p[i] = new Person;
+        p[index] = new Person;
         cout << "이름과 나이를 입력하시오. " << endl;
         cout << "이름: ";
-        cin >> p[i]->name;
-        cout  << "나이: ";
-        cin >> p[i]->age;
+        cin >> p[index]->name;
+        cout << "나이: ";
+        cin >> p[index]->age;
         cout << "\n";
-        i++;
+        index++;
     }
 
-      void search_user() {
-          for (int i = 0; p[i] != nullptr; i++) {
-              cout << p[i]->name << endl;
-              cout << p[i]->age << endl;
-              for (int j = 0; j < 3; j++) {
-                  if(p[i]->hobby[j] != nullptr)
+    void search_user() {
+        for (int i = 0; p[i] != nullptr; i++) {
+            cout << p[i]->name << endl;
+            cout << p[i]->age << endl;
+            for (int j = 0; j < 3; j++) {
+                if (p[i]->hobby[j] != nullptr)
                     cout << p[i]->hobby[j] << ' ';
-              }
-              cout << '\n' << endl;
-          }
-      }
+            }
+            cout << '\n' << endl;
+        }
+    }
 
-      void total_user() {
-          cout << "회원 명수: " << i << endl;
-          cout << '\n';
-      }
+    void total_user() {
+        cout << "회원 명수: " << index << endl;
+        cout << '\n';
+    }
 
-      void find_name() {
-          char name[10];
-          bool count = false ;
-          cout << "이름을 입력하시오. ";
-          cin >> name;
+    Person* find_name() {
+        char name[10];
+        bool count = false;
 
-          for (int i = 0; p[i] != nullptr; i++) {
-              if (strcmp(p[i]->name, name) == 0) {
-                  count = true;
-                  cout << p[i]->name << ' ' << p[i]->age <<' ';
-                  for (int j = 0; j < 3; j++) {
-                      if(p[i]->hobby[j] != nullptr) {
-                        cout << p[i]->hobby[j] << ' ';
-                      }
-                  }
-                  cout << '\n'<<endl; 
-                  break;
-              }
-          }
-          if (count == false) {
-              cout << "찾는 사람이 없습니다" << endl;
-              cout << endl;
-          }
-      }
-      void add_hobby() {
-          char name[10];
-          int j = 0 , i=0;
-          
-          do {
-                cout << "이름을 입력하시오. " << endl;
-                cout << "이름: ";
-                cin >> name;
-                getchar();
+        do {
+            cout << "이름을 입력하시오. ";
+            cin >> name;
 
-                for ( i = 0; p[i] != nullptr; i++) {
-                    if (strcmp(p[i]->name, name)==0) {
-                        j=0;
-                         break;
+            for ( int i = 0; p[i] != nullptr; i++) {
+                if (strcmp(p[i]->name, name) == 0) {
+                    count = true;
+                    cout << p[i]->name << ' ' << p[i]->age << ' ';
+                    for (int j = 0; j < 3; j++) {
+                        if (p[i]->hobby[j] != nullptr) {
+                            cout << p[i]->hobby[j] << ' ';
+                        }
                     }
-                    else {
-                        j++;
-                    }
-
-                    if (j > 0) {
-                        cout << "잘못된 입력" << j<<endl;
-                    }
-                    cout << endl;
+                    cout << '\n' << endl;
+                    return p[i];
                 }
-          } while (j>0);
+            }
+            if (count == false) {
+                cout << "찾는 사람이 없습니다" << endl;
+                cout << endl;
+            }
+        } while (count == false);
+    }
 
-          cout << "취미 3개를 입력하시오. " << endl;
-          for (int k = 0; k < 3; k++) {
-              cout << k + 1 << "번 째 취미: ";
-              p[i]->hobby[k] = new char[50];
-              cin >> p[i]->hobby[k];
-          }
-          cout << endl;
-      }
+    void add_hobby() {
+       Person* tmp = find_name();
+
+        for (int k = 0; k < 3; k++) {
+            if (tmp->hobby[k] == nullptr) {
+                cout << "취미를 입력하시오. " << endl;
+                tmp->hobby[k] = new char[10];
+                cin >> tmp->hobby[k];
+                break;
+            }
+        }
+        cout << endl;
+    }
 };
 
- int main() {
-    
-     PersonManager p1;
-     int menu, i = 0;
+int main() {
 
-       while (1) {
-           menu = p1.menu();
+    PersonManager p1;
+    int menu, i = 0;
+
+    while (1) {
+        menu = p1.menu();
 
         if (menu == 1) {
             p1.join_user();
@@ -154,6 +144,6 @@ public:
             p1.add_hobby();
         }
 
-      }
+    }
 
-  }
+}

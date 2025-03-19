@@ -14,10 +14,10 @@ void swap (int *a, int*b) {
 
 void swap (char **a, char **b) {
 
-    char** temp;
-    temp = a;
-    a = b;
-    b= temp;
+    char* temp;
+    temp = *a;
+    *a = *b;
+    *b= temp;
 
 }
 
@@ -29,7 +29,7 @@ int main() {
     char *d = "efgh";
 
     swap(&a, &b);
-    swap(c, d);
+    swap(&c, &d);
 
     cout << a <<' '<< b << endl;
     cout << c <<' '<< d << endl;

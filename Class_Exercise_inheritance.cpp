@@ -59,7 +59,8 @@ public:
     }
 
     void join_user() {
-        int choose;
+        int choose, age;
+        char *name
 
         do
         {
@@ -75,13 +76,14 @@ public:
         } while (choose < 1 || MenuOption >2);
 
         if (choose == 1) {
-            p[index] = new VIPerson;
+            
             cout << "이름과 나이를 입력하시오. " << endl;
             cout << "이름: ";
-            cin >> p[index]->name;
+            cin >> name;
             cout << "나이: ";
-            cin >> p[index]->age;
+            cin >> age;
             cout << "\n";
+            p[index] = new VIPerson;
             index++;
         }
         else {

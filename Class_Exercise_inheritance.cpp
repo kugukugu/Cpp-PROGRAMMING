@@ -20,7 +20,13 @@ class VIPerson : public Person {
 private:
     char* email;
 public:
-    
+  VIPerson (char* name, int age, char* email)   {
+        strncpy(this->name, name, 9);
+        this->name[9] = '\0';
+        this->age = age;
+        this->email = new char[strlen(email)+1];
+        strcpy(this->email ,email);
+  }  
 
     
 };

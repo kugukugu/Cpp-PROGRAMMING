@@ -60,7 +60,7 @@ public:
 
     void join_user() {
         int choose, age;
-        char *name
+        char *name, *email;
 
         do
         {
@@ -82,8 +82,10 @@ public:
             cin >> name;
             cout << "나이: ";
             cin >> age;
+            cout << "이메일: "
+            cin >> email;
             cout << "\n";
-            p[index] = new VIPerson;
+            p[index] = new VIPerson(name, age, email);
             index++;
         }
         else {

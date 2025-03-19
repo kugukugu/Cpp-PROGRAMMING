@@ -26,9 +26,9 @@ public:
         this->age = age;
         this->email = new char[strlen(email)+1];
         strcpy(this->email ,email);
-  }  
+  }
 
-    
+
 };
 
 class PersonManager {
@@ -66,13 +66,13 @@ public:
 
     void join_user() {
         int choose, age;
-        char *name, *email;
+        char name[10], *email;
 
         do
         {
             cout << "메뉴를 선택하시오. " << endl;
-            cout << "1. 일반회원" << endl;
-            cout << "2. VIP" << endl;
+            cout << "1. VIP" << endl;
+            cout << "2. 일반회원" << endl;
             cin >> choose;
             cout << endl;
             if (MenuOption < 1 || MenuOption >5) {
@@ -82,13 +82,13 @@ public:
         } while (choose < 1 || MenuOption >2);
 
         if (choose == 1) {
-            
+
             cout << "이름과 나이를 입력하시오. " << endl;
             cout << "이름: ";
             cin >> name;
             cout << "나이: ";
             cin >> age;
-            cout << "이메일: "
+            cout << "이메일: ";
             cin >> email;
             cout << "\n";
             p[index] = new VIPerson(name, age, email);
@@ -103,9 +103,7 @@ public:
             cin >> p[index]->age;
             cout << "\n";
             index++;
-
         }
-        
     }
 
     void search_user() {
@@ -191,7 +189,5 @@ int main() {
         else {
             p1.add_hobby();
         }
-
     }
-
 }

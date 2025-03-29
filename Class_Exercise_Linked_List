@@ -176,6 +176,12 @@ public:
             cout << "이름을 입력하시오. ";
             cin >> name;
 
+            if (temp == nullptr) {
+                cout << "찾는 사람이 없습니다" << endl;
+                cout << endl;
+                return nullptr;
+            }
+
             while (1)
             {
                 if (strcmp(temp->mp->name, name) == 0) {
@@ -185,16 +191,12 @@ public:
                 }
                 temp = temp->next;
                 if (temp == nullptr) {
-                    break;
+                    cout << "찾는 사람이 없습니다" << endl;
+                    cout << endl;
+
+                    return nullptr;
                 }
             }
-            if (count == false) {
-                cout << "찾는 사람이 없습니다" << endl;
-                cout << endl;
-
-                return nullptr;
-            }
-        
     }
 
     void add_hobby() {

@@ -40,8 +40,6 @@ public:
     Node *next;
 };
 
-
-
 class MonsterLinkedList {
 protected:
     Node* head;
@@ -60,7 +58,6 @@ public:
             delete temp;
             temp = head;
         }
-
     }
 
     void Append(Monster* mp) {

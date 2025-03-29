@@ -46,6 +46,12 @@ public:
             if (this->hobby[j] != nullptr) {
                 cout << this->hobby[j] << ' ';
             }
+            else {
+                if(j>0){
+                    cout << endl;
+                }
+                break;
+            }
         }
         cout << email << endl;
     }
@@ -117,10 +123,10 @@ public:
             Person* p = new VIPerson(name, age, email);
             np->mp = p;
             np->next = nullptr;
-            if (this->head == nullptr) { 
+            if (this->head == nullptr) {
                 this->head = np;
             }
-            else { 
+            else {
                 Node* temp = head;
                 while (temp->next != nullptr) {
                     temp = temp->next;
@@ -187,7 +193,7 @@ public:
                     temp->mp->print_user();
                     return temp;
                 }
-                
+
                 if (temp->next == nullptr) {
                     cout << "찾는 사람이 없습니다" << endl;
                     cout << endl;

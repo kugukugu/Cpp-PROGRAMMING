@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
 
@@ -20,15 +21,17 @@ class VIPerson : public Person {
 private:
     char* email;
 public:
-  VIPerson (char* name, int age, char* email)   {
+    VIPerson(char* name, int age, char* email) {
         strncpy(this->name, name, 9);
         this->name[9] = '\0';
         this->age = age;
-        this->email = new char[strlen(email)+1];
-        strcpy(this->email ,email);
-  }
+        this->email = new char[strlen(email) + 1];
+        strcpy(this->email, email);
+    }
 
-
+    void print_email() {
+        cout << email << endl;
+    }
 };
 
 class PersonManager {
@@ -66,7 +69,7 @@ public:
 
     void join_user() {
         int choose, age;
-        char name[10], *email;
+        char name[10],  email[10];
 
         do
         {
@@ -107,15 +110,7 @@ public:
     }
 
     void search_user() {
-        for (int i = 0; p[i] != nullptr; i++) {
-            cout << p[i]->name << endl;
-            cout << p[i]->age << endl;
-            for (int j = 0; j < 3; j++) {
-                if (p[i]->hobby[j] != nullptr)
-                    cout << p[i]->hobby[j] << ' ';
-            }
-            cout << '\n' << endl;
-        }
+        print_user();
     }
 
     void total_user() {
@@ -153,7 +148,7 @@ public:
 
     void add_hobby() {
         Person* tmp = find_name();
-
+   
         for (int k = 0; k < 3; k++) {
             if (tmp->hobby[k] == nullptr) {
                 cout << "취미를 입력하시오. " << endl;
@@ -163,6 +158,19 @@ public:
             }
         }
         cout << endl;
+    }
+
+    void print_user() {
+        for (int i = 0; p[i] != nullptr; i++) {
+            cout << p[i]->name << endl;
+            cout << p[i]->age << endl;
+            for (int j = 0; j < 3; j++) {
+                if (p[i]->hobby[j] != nullptr)
+                    cout << p[i]->hobby[j] << ' ';
+            }
+            cout << '\n' << endl;
+           
+        }
     }
 };
 

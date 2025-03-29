@@ -15,6 +15,15 @@ public:
             hobby[i] = nullptr;
         }
     }
+
+    virtual void print_user() {
+            cout << this->name << endl;
+            cout << this->age << endl;
+            for (int j = 0; j < 3; j++) {
+                if (this ->hobby[j] != nullptr)
+                    cout << this->hobby[j] << ' ';
+            }
+    }
 };
 
 class VIPerson : public Person {
@@ -29,7 +38,14 @@ public:
         strcpy(this->email, email);
     }
 
-    void print_email() {
+    void print_user() {
+        cout << this->name << endl;
+        cout << this->age << endl;
+        for (int j = 0; j < 3; j++) {
+            if (this->hobby[j] != nullptr) {
+                cout << this->hobby[j] << ' ';
+            }
+        }
         cout << email << endl;
     }
 };
@@ -69,7 +85,7 @@ public:
 
     void join_user() {
         int choose, age;
-        char name[10],  email[10];
+        char name[10], email[10];
 
         do
         {
@@ -110,7 +126,10 @@ public:
     }
 
     void search_user() {
-        print_user();
+        for (int i = 0; p[i] != nullptr; i++) {
+            p[i]->print_user();
+            cout << '\n' << endl;
+        }
     }
 
     void total_user() {
@@ -129,12 +148,7 @@ public:
             for (int i = 0; p[i] != nullptr; i++) {
                 if (strcmp(p[i]->name, name) == 0) {
                     count = true;
-                    cout << p[i]->name << ' ' << p[i]->age << ' ';
-                    for (int j = 0; j < 3; j++) {
-                        if (p[i]->hobby[j] != nullptr) {
-                            cout << p[i]->hobby[j] << ' ';
-                        }
-                    }
+                    p[i]->print_user();
                     cout << '\n' << endl;
                     return p[i];
                 }
@@ -148,7 +162,7 @@ public:
 
     void add_hobby() {
         Person* tmp = find_name();
-   
+
         for (int k = 0; k < 3; k++) {
             if (tmp->hobby[k] == nullptr) {
                 cout << "취미를 입력하시오. " << endl;
@@ -160,18 +174,7 @@ public:
         cout << endl;
     }
 
-    void print_user() {
-        for (int i = 0; p[i] != nullptr; i++) {
-            cout << p[i]->name << endl;
-            cout << p[i]->age << endl;
-            for (int j = 0; j < 3; j++) {
-                if (p[i]->hobby[j] != nullptr)
-                    cout << p[i]->hobby[j] << ' ';
-            }
-            cout << '\n' << endl;
-           
-        }
-    }
+    
 };
 
 int main() {

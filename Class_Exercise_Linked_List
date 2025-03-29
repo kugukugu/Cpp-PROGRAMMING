@@ -170,7 +170,6 @@ public:
 
     Node* find_name() {
         char name[10];
-        bool count = false;
         Node* temp = head;
 
             cout << "이름을 입력하시오. ";
@@ -185,35 +184,38 @@ public:
             while (1)
             {
                 if (strcmp(temp->mp->name, name) == 0) {
-                    count = true;
                     temp->mp->print_user();
                     return temp;
                 }
-                temp = temp->next;
-                if (temp == nullptr) {
+                
+                if (temp->next == nullptr) {
                     cout << "찾는 사람이 없습니다" << endl;
                     cout << endl;
-
                     return nullptr;
                 }
+                temp = temp->next;
             }
     }
 
     void add_hobby() {
         Node* tmp = find_name();
-        Node* temp = head;
+        int k;
 
         if (tmp == nullptr) {
             return;
         }
 
-        for (int k = 0; k < 3; k++) {
-            if (temp->mp->hobby[k] == nullptr) {
+        for (k = 0; k < 3; k++) {
+            if (tmp->mp->hobby[k] == nullptr) {
                 cout << "취미를 입력하시오. " << endl;
-                temp->mp->hobby[k] = new char[10];
-                cin >> temp->mp->hobby[k];
+                tmp->mp->hobby[k] = new char[10];
+                cin >> tmp->mp->hobby[k];
                 break;
             }
+        }
+
+        if (k == 3) {
+            cout << "입력 불가" << endl;
         }
         cout << endl;
     }

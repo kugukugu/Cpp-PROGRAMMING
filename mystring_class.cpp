@@ -6,30 +6,66 @@ using namespace std;
 class mystring {
 private:
     char *ch;
-
+    int length;
 public:
     mystring() {
         ch = nullptr;
+        length = 0;
     }
 
     mystring(char *ch) {
-        this->ch = new char[strlen(ch)+1];
+        length = strlen(ch);
+        this->ch = new char[length+1];
         strcpy(this->ch, ch);
     }
 
     mystring(const mystring& mystring1) {
-        this->ch = new char[strlen(mystring1.ch)+1];
+        length = strlen(mystring1.ch);
+        this->ch = new char[length+1];
         strcpy(this->ch, mystring1.ch);
     };
 
+    int length1() {
+        return length;
+    }
 
     void operator+=(const mystring& v1) {
-        char *ch = new char [strlen(this->ch)+strlen(v1.ch)+1];
+        char *ch = new char [length+strlen(v1.ch)+1];
         strcpy(ch,this->ch);
         strcat(ch, v1.ch);
-        ch[strlen(this->ch)+strlen(v1.ch)] ='\0';
+        ch[length+strlen(v1.ch)] ='\0';
         delete []this->ch ;
         this->ch = ch;
+        length= strlen(this->ch);
+    }
+
+   char operator[] (int index) {
+        if (index < 0 || index >= length) {
+            cout << "Array index out of bound" << endl;
+            exit(1);
+        }
+
+        return ch[index];
+    }
+
+    mystring substr1(int start, int length) {
+        char *test = new char[length+1];
+        strncpy (test, this->ch+start, length);
+        test[length] = '\0';
+        mystring mys = test;
+        delete[] test;
+        return mys;
+    }
+
+    size_t find1(char* ch) {
+        char *test = strstr(this->ch, ch);
+
+        if (test != nullptr) {
+            return test-this->ch;
+        }
+        else {
+            return -1;
+        }
     }
 
     friend mystring operator+(const mystring& mystring1, const mystring& mystring2);
@@ -117,6 +153,21 @@ int main() {
     cout << "문자열 입력 .. ";
     cin >> str3;
     cout << str3 << endl;
+
+    cout << "Length: " << result.length1() << endl; //길이
+
+    cout << "First char: " << result[0] << endl; //인덱싱
+
+    mystring sub = result.substr1(5,5); //부분 문자열
+    cout << "Substring: " << sub << endl;
+
+    size_t pos = result.find1("animal"); //문자열 찾기
+    if(pos != -1) {
+        cout << pos << endl;
+    }
+    else {
+        cout << "못 찾음" << endl;
+    }
 
     return 0;
 }

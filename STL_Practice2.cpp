@@ -5,53 +5,55 @@ using namespace std;
 
 template <typename T>
 class MyVector {
-    T *temp;
+    T* temp;
     int size1;
     int capacity1;
 public:
     MyVector() {
-        this->size1=0;
-        this->temp=NULL;
-        this->capacity1=0;
+        this->size1 = 0;
+        this->temp = NULL;
+        this->capacity1 = 0;
     }
 
     ~MyVector() {
-        delete []this->temp;
+        delete[]this->temp;
     }
 
     void push_back1(T tmp) {
 
     }
 
-    void resize1(int n, T tmp=0) {
-        
-        if(temp!=NULL) {
-            if(this->capacity < n) {
-                T *tp = new T[n];
-                for(int i=0; i<this->size1; i++) {
-                    tp[i]=temp[i];
+    void resize1(int n, T tmp = 0) {
+
+        if (temp != NULL) {
+            if (this->capacity < n) {
+                T* tp = new T[n];
+                for (int i = 0; i < this->size1; i++) {
+                    tp[i] = temp[i];
                 }
-                for(int i=this->size1; i<n; i++) {
-                    tp[i]=tmp;
+                for (int i = this->size1; i < n; i++) {
+                    tp[i] = tmp;
                 }
-                this->capacity=n;
-                this->size1=n;
-                delete []temp;
+                this->capacity = n;
+                this->size1 = n;
+                delete[]temp;
                 temp = tp;
             }
             else {
-                if(n>size1) {
-                    
+                if (n > size1) {
+                    for (int i = this->size1; i < n - this->size1; i++) {
+                        tp[i] = tmp;
+                    }
                 }
-                else 
-                
+                else
+                    this->size1 - n;
             }
-            
+
         }
         else {
-            this->temp= new T[n];
-            this->size1= n;
-            this->capacity1= n;
+            this->temp = new T[n];
+            this->size1 = n;
+            this->capacity1 = n;
         }
     }
 
